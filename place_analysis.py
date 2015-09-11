@@ -9,7 +9,10 @@ from nltk.corpus import stopwords
 
 data = cPickle.load(open('../results/tags/tag_stat_naive.pc'))
 
-place_data = set([x.strip() for x in open('../temp_store/place_name_list.txt').readlines()])
+city_info = cPickle.load(open('../temp_store/city_info.pc', 'rb'))
+country_info = cPickle.load(open('../temp_store/country_info.pc', 'rb'))
+admin_region_info = set(cPickle.load(open('../temp_store/admin_region_info.pc', 'rb')))
+
 sw = stopwords.words('english')
 
 place_tags = []
@@ -18,7 +21,7 @@ general_tags = []
 for tag in data:
     tag_str = tag[0].replace('+', ' ').lower()
     tag_dry_str = ' '.join([i for i in tag_str.split() if i not in sw])
-    if tag_str in place_data or tag_dry_str in place_data:
+    if tag_str.lower() in city_info or tag_str.lower() in country_info or tag_str.lower() in admin_region_info:
         place_tags.append(tag)
     else:
         general_tags.append(tag)
