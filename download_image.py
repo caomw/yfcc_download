@@ -28,6 +28,6 @@ def download_image(text_line):
     return '\t'.join(info + [rst])
 
 
-link_data = sc.textFile('/TMP/yjxiong/YFCC/src_data/yfcc100m_dataset-7')
+link_data = sc.textFile('/TMP/yjxiong/YFCC/src_data/yfcc100m_dataset-8')
 
-link_data.map(download_image).saveAsTextFile('/DATA/Datasets/YFCC100M/raw_data/yfcc100m_dataset-7_images')
+link_data.map(download_image).saveAsTextFile('/DATA/Datasets/YFCC100M/raw_data/yfcc100m_dataset-8_images')
